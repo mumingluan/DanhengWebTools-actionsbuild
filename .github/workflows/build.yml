@@ -1,0 +1,34 @@
+name: Build and Upload Artifact
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'  # 选择需要的 Node.js 版本
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: Upload dist folder as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist-artifact
+        path: dist/
