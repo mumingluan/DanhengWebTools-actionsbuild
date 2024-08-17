@@ -15,6 +15,7 @@ axios.defaults.headers.post['Access-Control-Allow-Origin-Type'] = '*'
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: import.meta.env.BASE_URL+'',
+  timeout: 50000
   // transformRequest: [
   //   function (data) {
   //     //由于使用的 form-data传数据所以要格式化
