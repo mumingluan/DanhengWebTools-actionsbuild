@@ -104,20 +104,6 @@ const updateTranslatedText = () => {
 const currentVersion = '0.0.1'; 
 const latestVersion = ref('');  
 
-const fetchLatestVersion = async () => {
-  try {
-    const response = await axios.get('https://api.github.com/repos/lctoolsweb/DanhengWebTools/releases');
-    if (response.data && response.data.length > 0) {
-      latestVersion.value = response.data[0].tag_name;
-      if (latestVersion.value > currentVersion) {
-        showAlert.value = true; 
-      }
-    }
-  } catch (error) {
-    console.error('Failed to fetch latest version:', error);
-  }
-};
-
 onMounted(() => {
   fetchLatestVersion();
 });
